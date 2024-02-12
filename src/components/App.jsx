@@ -15,10 +15,6 @@ function App() {
     (recipe) => recipe.id === selectedRecipeid
   );
 
-  // const [searchedQuery, setSearchedQuery] = useState('')
-  // const filteredQuery = recipes.filter(recipe => recipe.name.toLowerCase().startsWith(searchedQuery.toLowerCase))
-
-  // console.log(searchedQuery);
   useEffect(() => {
     const recipesJSON = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (recipesJSON !== null) {
@@ -75,15 +71,14 @@ function App() {
   }
 
   return (
-    <RecipeContext.Provider value={contextValue}>
-      <RecipeList
-        recipes={recipes}
-        // searchedQuery={searchedQuery}
-      />
-      {selectedRecipe && (
-        <RecipeEdit recipe={selectedRecipe} selectedRecipe={selectedRecipe} />
-      )}
-    </RecipeContext.Provider>
+    <div className="app flex">
+      <RecipeContext.Provider value={contextValue}>
+        <RecipeList recipes={recipes} />
+        {selectedRecipe && (
+          <RecipeEdit recipe={selectedRecipe} selectedRecipe={selectedRecipe} />
+        )}
+      </RecipeContext.Provider>
+    </div>
   );
 }
 
